@@ -13,11 +13,12 @@ var startData = {
     openPythonConsoleWindow:false,
     pythonConnectionTimeout:10000,
     KillPythonProcessWhenStarting:false,
-    CreateDirectoriesBaseTimeForTests:true
+    CreateDirectoriesBaseTimeForTests:true,
+    scriptContent:''
 }
 
-var scriptFileName  = 'C:/watsonScripts/22.71/script_estimator_one_port.txt';
-startData.ScriptContent = fs.readFileSync(scriptFileName, 'utf8');
+//var scriptFileName  = 'C:/watsonScripts/22.71/script_estimator_one_port.txt';
+//startData.scriptContent = fs.readFileSync(scriptFileName, 'utf8');
 
 watson.Start(startData, function(err)
 {

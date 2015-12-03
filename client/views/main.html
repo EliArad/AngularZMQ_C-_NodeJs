@@ -1,6 +1,139 @@
-<div class="container">
+
+<style>
+
+  /* Hiding the checkbox, but allowing it to be focused */
+  .badgebox
+  {
+    opacity: 0;
+  }
+
+  .badgebox + .badge
+  {
+    /* Move the check mark away when unchecked */
+    text-indent: -999999px;
+    /* Makes the badge's width stay the same checked and unchecked */
+    width: 27px;
+  }
+
+  .badgebox:focus + .badge
+  {
+    /* Set something to make the badge looks focused */
+    /* This really depends on the application, in my case it was: */
+
+    /* Adding a light border */
+    box-shadow: inset 0px 0px 5px;
+    /* Taking the difference out of the padding */
+  }
+
+  .badgebox:checked + .badge
+  {
+    /* Move the check mark back when checked */
+    text-indent: 0;
+  }
+
+</style>
 
 
+<div id="example1"></div>
 
-  main
+
+<div class="container" ng-controller="MainController as vm">
+  <div class="row">
+    <form  name="form">
+    <div class="col-md-3">
+      <table>
+        <tr>
+        <td style="width:80px">
+          <button type="button"  ng-class="{'btn-success' : vm.startClass}" ng-disabled="(form.$invalid ||  vm.enableComponents == false)" ng-click="vm.Start()"
+                  class="btn btn-primary">Start
+          </button>
+        </td>
+        <td  style="width:80px">
+          <button type="button" ng-disabled="vm.enableComponents == false" ng-click="vm.Stop()" class="btn btn-primary">
+            Stop
+          </button>
+        </td>
+          <td style="height:20px;width:200px">
+            <sevensegment-component color-on="lime" ng-model="watsonTemperature" digits="5">
+            </sevensegment-component>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+    <div class="col-md-2">
+      <span style="font-size: x-large"  ng-show="vm.changesuccess" ng-class="{ 'animated bounce': vm.changesuccess}">{{ vm.lastError }}</span>
+    </div>
+    <div class="col-md-7">
+      <input type="text" name="response"  ng-model="vm.response" id="response" class="form-control">
+    </div>
+      </form>
   </div>
+
+  <div class="row" style="margin-top: 20px">
+    <div class="col-md-5">
+      <h3>Start watson config</h3>
+    </div>
+    <div class="col-offset-5 col-md-2">
+         <span class="btn btn-primary btn-file" >
+               Load script..
+              <input id="fileInputElementfirst"
+                     data-classIcon="icon-plus"
+                     data-buttonText="??? ?????"
+                     name="images",
+                     accept="image/jpeg"
+                     type="file"
+                     multiple="false"
+                     data-ng-model="theFile1"
+                     onchange="angular.element(this).scope().fileNameChanged1()"/>
+             </span>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-5">
+
+        <form  name="form">
+          <div class="form-group" ng-class="{ 'has-error': form.calibrationDirectory.$error.required }">
+            <label for="calibrationDirectory" class="sr-only">calibrationDirectory</label>calibrationDirectory
+            <input type="text" name="calibrationDirectory"  ng-model="vm.data.calibrationDirectory" required id="calibrationDirectory" class="form-control" placeholder="Calibration Directory">
+          </div>
+          <div class="form-group" ng-class="{ 'has-error': form.DirectoryToStoreData.$error.required }">
+            <label for="DirectoryToStoreData" class="sr-only">DirectoryToStoreData</label>DirectoryToStoreData
+            <input type="text" name="DirectoryToStoreData" ng-model="vm.data.DirectoryToStoreData"  required  id="DirectoryToStoreData" class="form-control" placeholder="Directory to store data">
+          </div>
+          <div class="form-group" ng-class="{ 'has-error': form.estimatorPythonCodePath.$error.required }">
+            <label for="estimatorPythonCodePath" class="sr-only">estimatorPythonCodePath</label>estimatorPythonCodePath
+            <input type="text" name="estimatorPythonCodePath"  ng-model="vm.data.estimatorPythonCodePath"   required id="estimatorPythonCodePath" class="form-control" placeholder="estimatorPythonCodePath">
+          </div>
+          <div class="form-group" ng-class="{ 'has-error': form.estimatorPKLFile.$error.required }">
+            <label for="estimatorPKLFile" class="sr-only">estimatorPKLFile</label>estimatorPKLFile
+            <input type="text" name="estimatorPKLFile"  ng-model="vm.data.estimatorPKLFile"   required  id="estimatorPKLFile" class="form-control" placeholder="estimator PKL file">
+          </div>
+          <div class="form-group" ng-class="{ 'has-error': form.maxFilesToPack.$error.required }">
+            <label for="maxFilesToPack" class="sr-only">maxFilesToPack</label>maxFilesToPack
+            <input type="number" name="maxFilesToPack" required ng-model="vm.data.maxFilesToPack"  required id="maxFilesToPack" class="form-control" placeholder="maxFilesToPack">
+          </div>
+          <div class="form-group" ng-class="{ 'has-error': form.maxPackedFilesInDirectory.$error.required }">
+            <label for="maxPackedFilesInDirectory" class="sr-only">maxPackedFilesInDirectory</label>maxPackedFilesInDirectory
+            <input type="number" name="maxPackedFilesInDirectory" required ng-model="vm.data.maxPackedFilesInDirectory"  required  id="maxPackedFilesInDirectory" class="form-control" placeholder="maxPackedFilesInDirectory">
+          </div>
+          <div class="form-group">
+            <label for="primary"  class="btn btn-primary">Estimator
+              <input type="checkbox" ng-model="vm.data.EstimatorEnabled"  id="primary" class="badgebox"><span class="badge">&check;</span></label>
+          </div>
+          <div class="form-group">
+            <label for="primary1" class="btn btn-primary">CreateDirectoriesBaseTimeForTests
+              <input type="checkbox" ng-model="vm.data.CreateDirectoriesBaseTimeForTests" id="primary1" class="badgebox"><span class="badge">&check;</span></label>
+          </div>
+        </form>
+
+    </div> <!-- /.col-xs-12 -->
+    <div class="col-md-7">
+      <textarea ng-model="vm.scriptContent" rows="25" cols="80" style="margin-top: 20px">
+
+       </textarea>
+    </div>
+  </div> <!-- /.row -->
+
+</div>

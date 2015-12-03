@@ -14,6 +14,7 @@
   <link rel="stylesheet" href="client/styles/loginscreen.css" />
   <link rel="stylesheet" href="client/styles/main.css">
   <link rel="stylesheet" href="client/styles/styles.css">
+    <link rel="stylesheet" href="client/styles/watsonstartform.css">
   <!--<link rel="stylesheet" href="client/styles/animation.css">-->
   <!--<link rel="stylesheet" href="client/styles/viewanimation.css">-->
   <link rel="stylesheet" href="client/styles/detailsandmypic.css">
@@ -43,9 +44,7 @@
 
 
 <div class="footer">
-  <div class="container">
-    <p><span class="glyphicon glyphicon-heart"></span> Watson field</p>
-  </div>
+
 </div>
 
 
@@ -67,6 +66,10 @@
 <!-- <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script> -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script src="bower_components/knockout/dist/knockout.js"></script>
+<script src="client/jquery/sevenseg/sevenSeg.js"></script>
+
+
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script src="bower_components/angular-animate/angular-animate.js"></script>
@@ -80,6 +83,7 @@
 <script src="bower_components/angular-bootstrap-checkbox/angular-bootstrap-checkbox.js"></script>
 <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
 <script src="bower_components/angular-touch/angular-touch.min.js"></script>
+<script src="bower_components/angular-base64/angular-base64.min.js"></script>
 
 
 <script src="bower_components/ng-password-strength/dist/scripts/ng-password-strength.min.js"></script>
@@ -109,8 +113,12 @@
 <script src="client/controllers/LoginController.js"></script>
 <script src="client/controllers/RegistrationController.js"></script>
 <script src="client/services/Registration.js"></script>
+<script src="client/services/fileReader.js"></script>
 <script src="client/services/authtoken.js"></script>
-<script src="client/services/myhttphelper.js"></script>
+<script src="client/services/watsonapi.js"></script>
+<script src="client/services/appCookieStore.js"></script>
+<script src="client/directives/seventsegment.js"></script>
+<script src="node_modules/socket.io-client/socket.io.js"></script>
 
 
 <!--  JQuery plugins-->

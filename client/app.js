@@ -16,6 +16,7 @@ var app = angular
 
 
     'ui.router',
+    'base64',
 
 
     'ngSanitize',
