@@ -1,0 +1,26 @@
+{
+  "name": "watson",
+  "version": "1.0.0",
+  "description": "ZMQ wrapper for watson",
+  "main": "app.js",
+  "dependencies": {
+    "angular-resource": "^1.4.8",
+    "body-parser": "^1.14.1",
+    "dict": "^1.4.0",
+    "express": "^4.13.3",
+    "express-bearer-token": "^2.1.0",
+    "fs": "0.0.2",
+    "guid": "0.0.12",
+    "jsonwebtoken": "^5.4.1",
+    "moment": "^2.10.6",
+    "view-helpers": "^0.1.5",
+    "yargs": "^3.30.0",
+    "zmq": "^2.14.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eli Arad",
+  "license": "ISC"
+}
